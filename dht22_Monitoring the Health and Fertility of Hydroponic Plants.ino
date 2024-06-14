@@ -3,12 +3,12 @@
 #include <PubSubClient.h>
 
 
-const char* ssid = "Binomial Newton"; //ganti wifi ID
-const char* password = "Kalkulus21"; //ganti wifi Password
+const char* ssid = "Jessica"; //ganti wifi ID
+const char* password = "Jess29"; //ganti wifi Password
 
 #define tb_server "thingsboard.cloud"
-const int tb_port = 1883;
-#define tb_token "vuu5pagqdk84do1fjbnz" //ganti token Thingsboard
+const int tb_port = 1885;
+#define tb_token "WeqTWAL8H2izOKGmkUYP" //ganti token Thingsboard
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -25,7 +25,7 @@ void setup()
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
-    Serial.println("Koneksi WiFi...");
+    Serial.println("Koneksi ke WiFi...");
   }
   Serial.println("Terhubung ke WiFi");
 
@@ -59,7 +59,7 @@ void loop() {
     Serial.println("Data terkirim: " + telemetryData);
   }
 
-  delay(5000); // Kirim data setiap 5 detik
+  delay(4000); // Kirim data setiap 5 detik
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
@@ -68,14 +68,14 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
 void reconnect() {
   while (!client.connected()) {
-    Serial.print("Menghubungkan ke ThingsBoard...");
+    Serial.print("Sedang Menghubungkan ke ThingsBoard...");
     if (client.connect("ESP32_Client", tb_token, "")) {
-      Serial.println("Berhasil");
+      Serial.println("Berhasil !");
     } else {
       Serial.print("Gagal, status=");
       Serial.print(client.state());
-      Serial.println(" Coba lagi dalam 5 detik");
-      delay(5000);
+      Serial.println("Proses diulang dalam 4 detik");
+      delay(4000);
     }
   }
 }
